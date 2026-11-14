@@ -1,0 +1,22 @@
+{
+  "name": "nam-o-that-bao",
+  "version": "1.0.0",
+  "description": "Bản đồ tương tác 7 Di tích lịch sử Nam Ô - Dự án tham dự cuộc thi Dấu Chân Di Sản",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "nam-o",
+    "heritage",
+    "map",
+    "da-nang"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}
