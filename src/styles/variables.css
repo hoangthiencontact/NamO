@@ -1,0 +1,57 @@
+/**
+ * variables.css - Hệ thống biến màu sắc và phong cách giao diện Nam Ô Thất Bảo
+ */
+
+:root {
+  /* Google Brand Color System */
+  --google-blue: #1a73e8;
+  --google-blue-hover: #1557b0;
+  --google-blue-surface: #e8f0fe;
+
+  --google-red: #ea4335;
+  --google-red-surface: #fce8e6;
+
+  --google-yellow: #fbbc04;
+  --google-yellow-dark: #f29900;
+  --google-yellow-surface: #fef7e0;
+
+  --google-green: #34a853;
+  --google-green-surface: #e6f4ea;
+
+  /* Nền và Phông nền di sản màu vàng lịch sử */
+  --bg-page: #faf7ef;
+  --bg-white: #ffffff;
+  --bg-subtle: #f5efe1;
+  --bg-card: #ffffff;
+  --heritage-gold: #b8860b;
+  --heritage-gold-dark: #8c6412;
+  --heritage-gold-surface: #fdf6e2;
+  --border-heritage: #e5d7b3;
+
+  /* Văn bản (Text Hierarchy) */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+
+  /* Đường viền & Phân cách */
+  --border-light: #e2e8f0;
+  --border-subtle: #f1f5f9;
+
+  /* Độ bo góc (Border Radius) - Vuông góc 0px hoàn toàn */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-card: 0px;
+  --radius-pill: 0px;
+
+  /* Hiệu ứng bóng (Shadows) */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 16px rgba(15, 23, 42, 0.06);
+  --shadow-hover: 0 12px 28px rgba(15, 23, 42, 0.12);
+  --shadow-lg: 0 20px 35px -5px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Phông chữ & Chuyển động */
+  --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}

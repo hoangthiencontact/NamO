@@ -1,0 +1,58 @@
+/**
+ * pins.css - Marker điểm ghim Google Maps & Leaflet Popups
+ */
+
+.google-pin-container {
+  position: relative;
+  width: 36px;
+  height: 46px;
+  cursor: pointer;
+}
+
+.google-pin {
+  width: 34px;
+  height: 42px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.25s var(--ease-spring);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+}
+
+.google-pin .pin-label {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.google-pin-container:hover .google-pin,
+.google-pin-container.active .google-pin {
+  transform: translateY(-8px) scale(1.18);
+}
+
+/* Leaflet Popup tùy chỉnh */
+.leaflet-popup-content-wrapper {
+  background: var(--bg-white) !important;
+  border-radius: var(--radius-card) !important;
+  color: var(--text-primary) !important;
+  padding: 0 !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: 1px solid var(--border-light) !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: 280px !important;
+}
+
+.google-popup-card {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
