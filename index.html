@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nam Ô Thất Bảo - 7 Di Tích Lịch Sử Làng Cổ Nam Ô</title>
+  <meta name="description"
+    content="Landin g page khám phá 7 di tích lịch sử văn hóa làng cổ Nam Ô, Đà Nẵng với Carousel ảnh lớn đầu trang, bấm vào ảnh trỏ tới thẻ di tích và bản đồ Google Maps." />
+
+  <!-- Google Fonts: Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <!-- Swiper.js Touch Carousel CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Custom Landing Page Stylesheet (Modular CSS) -->
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+
+<body>
+
+  <!-- ====================================================================
+       1. THANH ĐIỀU HƯỚNG NỔI (GLASS NAVBAR)
+       ==================================================================== -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="#" class="nav-brand">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-compass"></i>
+        </div>
+        <span class="brand-title">NAM Ô THẤT BẢO</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero-carousel-section" class="nav-link">Bộ sưu tập ảnh</a></li>
+        <li><a href="#ban-do" class="nav-link">Bản đồ tương tác</a></li>
+        <li><a href="#di-tich" class="nav-link">Thẻ di tích chi tiết</a></li>
+        <li><a href="#van-hoa" class="nav-link">Dấu ấn văn hóa</a></li>
+      </ul>
+
+      <a href="#ban-do" class="nav-cta-btn">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <span>Đến Bản Đồ</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ====================================================================
+       2. HERO SECTION VỚI TOUCH CAROUSEL ẢNH LỚN NGAY ĐẦU TRANG
+       ==================================================================== -->
+  <header class="hero-top-section" id="hero-carousel-section">
+    <div class="container">
+
+      <!-- Tiêu đề mở đầu ngắn gọn -->
+      <div class="hero-header-compact">
+        <div class="hero-pill-badge">
+          <i class="fa-solid fa-award"></i>
+          <span>Di tích Lịch sử Cấp Thành phố • Làng Cổ Nam Ô, Đà Nẵng</span>
+        </div>
+
+        <h1 class="hero-title">
+          Khám Phá <span>7 Báu Vật Làng Cổ Nam Ô</span>
+        </h1>
+
+        <p class="hero-desc">
+          Bộ sưu tập ảnh 7 di tích lịch sử hàng trăm năm tuổi. <strong>Bấm vào ảnh bất kỳ</strong> để trỏ ngay tới thẻ
+          thông tin chi tiết và định vị trên bản đồ!
+        </p>
+      </div>
+
+      <!-- CAROUSEL CHỈ HIỂN THỊ ẢNH LỚN (KHÔNG CHỨA THẺ NỘI DUNG RƯỜM RÀ) -->
+      <div class="swiper swiper-large-photo-container" id="relics-swiper">
+        <div class="swiper-wrapper" id="carousel-slides-wrapper">
+          <!-- Render tự động 7 slides ảnh lớn qua js/main.js -->
+        </div>
+
+        <!-- Điều khiển chuyển ảnh & Phân trang -->
+        <div class="swiper-controls-bar">
+          <button class="swiper-nav-pill-btn" id="swiper-prev-btn" title="Ảnh trước">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <div class="swiper-pagination" id="swiper-pagination-dots"></div>
+          <button class="swiper-nav-pill-btn" id="swiper-next-btn" title="Ảnh tiếp theo">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ====================================================================
+       3. BẢN ĐỒ DI SẢN TƯƠNG TÁC (INTERACTIVE MAP SECTION)
+       ==================================================================== -->
+  <section class="map-showcase-section" id="ban-do">
+    <div class="container">
+
+      <div class="section-head-center">
+        <span class="section-eyebrow">BẢN ĐỒ GOOGLE TƯƠNG TÁC</span>
+        <h2 class="section-heading">Bản Đồ Di Tích Làng Cổ Nam Ô</h2>
+      </div>
+
+      <!-- Dải bộ lọc chủ đề -->
+      <div class="map-filter-bar">
+        <button class="chip-btn active" data-filter="all">Tất cả (7)</button>
+        <button class="chip-btn" data-filter="sea"><i class="fa-solid fa-water"></i> Sông biển & Cá Ông</button>
+        <button class="chip-btn" data-filter="champa"><i class="fa-solid fa-landmark-dome"></i> Văn minh Chăm
+          Pa</button>
+        <button class="chip-btn" data-filter="history"><i class="fa-solid fa-shield-halved"></i> Kháng Pháp
+          1858</button>
+        <button class="chip-btn" data-filter="shrine"><i class="fa-solid fa-place-of-worship"></i> Thờ Mẫu</button>
+        <button class="chip-btn" data-filter="community"><i class="fa-solid fa-torii-gate"></i> Đình làng</button>
+      </div>
+
+      <!-- Khung Dashboard Bản đồ tương tác -->
+      <div class="map-dashboard-card">
+
+        <!-- Vùng Bản đồ Leaflet -->
+        <div class="map-canvas-wrapper">
+          <div id="map-container"></div>
+
+          <!-- Các nút công cụ nổi trên bản đồ -->
+          <div class="map-corner-tools">
+            <button class="map-tool-icon-btn" id="btn-layer-menu" title="Chọn loại bản đồ">
+              <i class="fa-solid fa-layer-group"></i>
+            </button>
+            <div class="map-layer-dropdown" id="layer-dropdown">
+              <button class="layer-drop-btn active" data-layer="google-hybrid">
+                <i class="fa-solid fa-satellite"></i> Google Vệ tinh
+              </button>
+              <button class="layer-drop-btn" data-layer="google-streets">
+                <i class="fa-solid fa-map"></i> Google Đường bộ
+              </button>
+              <button class="layer-drop-btn" data-layer="osm">
+                <i class="fa-solid fa-globe"></i> OpenStreetMap
+              </button>
+            </div>
+
+            <button class="map-tool-icon-btn" id="btn-recenter-view" title="Căn giữa làng Nam Ô">
+              <i class="fa-solid fa-crosshairs"></i>
+            </button>
+            <button class="map-tool-icon-btn" id="btn-auto-tour-mode" title="Bật chuyến tham quan tự động">
+              <i class="fa-solid fa-play"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Bảng soi thông tin di tích khi sờ chuột (Live Dynamic Hover Inspector) -->
+        <aside class="map-hover-inspector" id="map-inspector">
+          <div class="inspector-meta-row">
+            <span class="inspector-badge" id="insp-badge" style="background:#e8f0fe; color:#1a73e8;">
+              DI TÍCH • CỘNG ĐỒNG
+            </span>
+            <span class="inspector-rating">★ 5.0 (Nam Ô)</span>
+          </div>
+
+          <!-- Khung ảnh di tích đại diện -->
+          <div class="inspector-media-box has-image" id="insp-media-box" onclick="openDetailModal(activeSiteId)"
+            title="Bấm xem hình ảnh, video và tư liệu chi tiết">
+            <img src="images/dinh-lang-nam-o.webp" id="insp-loaded-img" class="inspector-loaded-img"
+              alt="Ảnh di tích Đình Làng Nam Ô" />
+          </div>
+
+          <div>
+            <h3 class="inspector-title" id="insp-title">Đình Làng Nam Ô</h3>
+            <div class="inspector-address" id="insp-address">
+              <i class="fa-solid fa-map-pin" style="color:var(--google-blue);"></i>
+              <span>Phố 37 Nam Ô 1, P. Hòa Hiệp Nam, Q. Liên Chiểu, Đà Nẵng</span>
+            </div>
+          </div>
+
+          <p class="inspector-desc" id="insp-desc">
+            Ngôi đình cổ thờ cúng các bậc tiền hiền khai sáng làng chài Nam Ô, ban đầu tọa lạc tại thế đất phong thủy
+            'ngọc ngậm trong hàm phụng' bên vịnh Đà Nẵng bán nguyệt.
+          </p>
+
+          <div class="inspector-actions-row">
+            <button class="btn-inspector-primary" id="insp-btn-detail" onclick="openDetailModal(activeSiteId)">
+              <i class="fa-solid fa-book-open"></i>
+              <span>Xem lịch sử chi tiết</span>
+            </button>
+            <a href="#" target="_blank" class="btn-inspector-outline" id="insp-btn-gmaps">
+              <i class="fa-solid fa-diamond-turn-right"></i>
+              <span>Chỉ đường</span>
+            </a>
+          </div>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       4. DANH SÁCH THẺ DI TÍCH (HIỂN THỊ TINH GỌN: ẢNH & TÊN DI TÍCH)
+       ==================================================================== -->
+  <section class="relics-cards-section" id="di-tich">
+    <div class="container">
+
+      <div class="section-head-center">
+        <span class="section-eyebrow">BỘ SƯU TẬP DI SẢN</span>
+        <h2 class="section-heading">7 Di Tích Lịch Sử Làng Cổ Nam Ô</h2>
+        <p class="section-desc">
+          Nhấp vào bất kỳ ảnh di tích nào để mở xem đầy đủ thông tin lịch sử, bộ sưu tập hình ảnh và video tư liệu liên
+          quan.
+        </p>
+      </div>
+
+      <!-- Lưới 7 thẻ di tích tinh gọn (chỉ ảnh và tên, click mở popup) -->
+      <div class="relics-cards-grid" id="relics-cards-grid">
+        <!-- Render tự động qua js/main.js -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       5. DẤU ẤN VĂN HÓA LÀNG CỔ NAM Ô
+       ==================================================================== -->
+  <section class="heritage-story-section" id="van-hoa">
+    <div class="container">
+
+      <div class="section-head-center">
+        <span class="section-eyebrow">DẤU ẤN ĐẶC SẮC</span>
+        <h2 class="section-heading">Trầm Tích Văn Hóa Làng Biển Nam Ô</h2>
+        <p class="section-desc">
+          Ba giá trị cốt lõi làm nên sức sống trường tồn của làng cổ Nam Ô qua hàng thế kỷ.
+        </p>
+      </div>
+
+      <div class="heritage-story-grid">
+
+        <div class="story-card">
+          <div class="story-icon" style="background:var(--google-blue-surface); color:var(--google-blue);">
+            <i class="fa-solid fa-water"></i>
+          </div>
+          <h3 class="story-title">Tín Ngưỡng Sông Biển & Lễ Hội Cầu Ngư</h3>
+          <p class="story-text">
+            Nơi phụng thờ cá Ông từ năm 1802 và lưu giữ trọn vẹn Di sản Văn hóa Phi vật thể Quốc gia Lễ hội Cầu Ngư cùng
+            làn điệu Hát Bã Trạo thiêng liêng cầu cho mưa thuận gió hòa, sóng yên biển lặng.
+          </p>
+        </div>
+
+        <div class="story-card">
+          <div class="story-icon" style="background:var(--google-yellow-surface); color:var(--google-yellow-dark);">
+            <i class="fa-solid fa-monument"></i>
+          </div>
+          <h3 class="story-title">Giao Thoa Văn Minh Chăm Pa - Đại Việt</h3>
+          <p class="story-text">
+            Chứng tích sống động tại Giếng Lăng hàng trăm năm tuổi với mạch nước ngọt vĩnh cửu bên biển mặn, cùng ngôi
+            Miếu Bà Bô Bô nơi nữ thần Chăm và nữ thần Việt cùng cộng cư hòa hợp suốt hơn 150 năm.
+          </p>
+        </div>
+
+        <div class="story-card">
+          <div class="story-icon" style="background:var(--google-red-surface); color:var(--google-red);">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3 class="story-title">Chiến Lũy Chống Giặc Pháp Năm 1858</h3>
+          <p class="story-text">
+            Nghĩa Trủng và Dinh Âm Linh là những tượng đài bất tử ghi dấu trận chiến hào hùng chống liên quân Pháp - Tây
+            Ban Nha năm 1858 dưới chân đèo Hải Vân, khắc họa đạo lý "Uống nước nhớ nguồn" cao đẹp.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       6. CHÂN TRANG (FOOTER)
+       ==================================================================== -->
+  <footer class="landing-footer">
+    <div class="container">
+      <div class="footer-brand">
+        <span class="brand-icon-box">
+          <i class="fa-solid fa-compass"></i>
+        </span>
+        <span>NAM Ô THẤT BẢO • DẤU CHÂN DI SẢN</span>
+      </div>
+      <p class="footer-desc">
+        Dự án số hóa và lan tỏa giá trị cụm 7 di tích lịch sử làng cổ Nam Ô, phường Hòa Hiệp Nam, quận Liên Chiểu, thành
+        phố Đà Nẵng.
+      </p>
+      <div class="footer-copy">
+        © 2026 Nam Ô Thất Bảo • Nền tảng Landing Page Bản đồ Tương tác Di sản.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================================================================
+       7. MODAL CHI TIẾT LỊCH SỬ, BỘ SƯU TẬP ẢNH & VIDEO LIÊN QUAN
+       ==================================================================== -->
+  <div class="modal-backdrop-light" id="relic-modal">
+    <div class="modal-sheet-dialog">
+
+      <!-- Khung ảnh lớn trong Modal -->
+      <div class="modal-hero-box has-image" id="modal-hero-box">
+        <img src="" id="modal-hero-img" class="modal-hero-img-loaded" alt="Ảnh di tích" />
+
+        <button class="modal-close-icon" onclick="closeDetailModal()" title="Đóng cửa sổ">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Header tiêu đề di tích -->
+      <div class="modal-head-title-bar">
+        <div>
+          <span class="inspector-badge" id="modal-badge" style="background:#e8f0fe; color:#1a73e8;">DI TÍCH</span>
+          <h2 class="modal-title-main" id="modal-title">Tên Di Tích</h2>
+          <div class="modal-subtitle-text" id="modal-subtitle">Phụ đề di tích</div>
+        </div>
+      </div>
+
+      <!-- Thanh Tabs chuyển đổi nội dung: Thông tin | Thư viện ảnh | Video -->
+      <div class="modal-tabs-bar">
+        <button class="modal-tab-btn active" data-tab="info" id="tab-btn-info">
+          <i class="fa-solid fa-book-open"></i>
+          <span>Lịch sử & Thông tin</span>
+        </button>
+        <button class="modal-tab-btn" data-tab="gallery" id="tab-btn-gallery">
+          <i class="fa-solid fa-images"></i>
+          <span>Bộ sưu tập ảnh (<span id="modal-gallery-count">1</span>)</span>
+        </button>
+        <button class="modal-tab-btn" data-tab="video" id="tab-btn-video">
+          <i class="fa-solid fa-video"></i>
+          <span id="tab-video-title">Video liên quan</span>
+          <span class="modal-tab-badge" id="tab-video-badge"></span>
+        </button>
+      </div>
+
+      <!-- Thân cuộn Modal chia theo Tabs -->
+      <div class="modal-scroll-content">
+
+        <!-- ================= TAB 1: THÔNG TIN & LỊCH SỬ ================= -->
+        <div class="modal-tab-pane active" id="modal-pane-info">
+
+          <div class="modal-info-meta-box">
+            <div><i class="fa-solid fa-map-pin" style="color:var(--google-blue); width:20px;"></i> <span
+                id="modal-address">Địa chỉ</span></div>
+            <div><i class="fa-solid fa-compass" style="color:var(--google-blue); width:20px;"></i> <span
+                id="modal-coords">Tọa độ</span></div>
+            <div><i class="fa-solid fa-clock-rotate-left" style="color:var(--google-blue); width:20px;"></i> <span
+                id="modal-era">Niên đại</span></div>
+          </div>
+
+          <!-- Nút thao tác nhanh Google Maps & Focus Bản đồ -->
+          <div class="modal-action-row">
+            <a href="#" target="_blank" class="btn-inspector-primary" id="modal-gmaps-link"
+              style="text-decoration:none;">
+              <i class="fa-solid fa-diamond-turn-right"></i> Chỉ đường trên Google Maps
+            </a>
+            <button class="btn-inspector-outline" id="modal-btn-focus-map" onclick="focusRelicFromModal()">
+              <i class="fa-solid fa-location-crosshairs"></i> Xem vị trí trên bản đồ
+            </button>
+          </div>
+
+          <!-- Điểm nổi bật -->
+          <div class="modal-highlights-card">
+            <h4><i class="fa-solid fa-star"></i> GIÁ TRỊ VĂN HÓA & ĐẶC ĐIỂM NỔI BẬT</h4>
+            <ul id="modal-highlights-list"></ul>
+          </div>
+
+          <!-- Lịch sử hình thành -->
+          <div class="modal-narrative-card">
+            <h4><i class="fa-solid fa-book-bookmark"></i> LỊCH SỬ & QUÁ TRÌNH HÌNH THÀNH</h4>
+            <div id="modal-narrative-text"></div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 2: HÌNH ẢNH LIÊN QUAN ================= -->
+        <div class="modal-tab-pane" id="modal-pane-gallery">
+          <div class="gallery-intro-bar">
+            <div>
+              <h4 style="font-size:1rem; font-weight:700; color:var(--text-primary); margin:0;">Hình ảnh tư liệu di tích
+              </h4>
+              <p style="font-size:0.8rem; color:var(--text-secondary); margin:2px 0 0 0;">Nhấp vào ảnh bất kỳ để xem ở
+                khung lớn phía trên.</p>
+            </div>
+          </div>
+
+          <div class="modal-gallery-grid" id="modal-gallery-grid">
+            <!-- Render ảnh liên quan qua js/main.js -->
+          </div>
+        </div>
+
+        <!-- ================= TAB 3: VIDEO LIÊN QUAN & HƯỚNG DẪN ================= -->
+        <div class="modal-tab-pane" id="modal-pane-video">
+          <div id="modal-video-container">
+            <!-- Render trình phát video qua js/main.js -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Leaflet JS Library -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Swiper.js Touch Carousel Library -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Main Application Entry (Modular ES Scripts) -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

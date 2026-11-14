@@ -1,0 +1,283 @@
+/**
+ * cards.css - Lưới 7 thẻ di tích tinh gọn (ảnh, tên, hiệu ứng nhấp nháy, huy hiệu)
+ */
+
+.relics-cards-section {
+  padding: 60px 0;
+  background: #ffffff;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.relics-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+@media (min-width: 600px) {
+  .relics-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .relics-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .relics-cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Thẻ di tích tinh gọn: Chỉ hiện ảnh và tên di tích */
+.relic-simple-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.4, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+  cursor: pointer;
+  position: relative;
+  scroll-margin-top: 90px;
+}
+
+.relic-simple-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+  border-color: var(--google-blue);
+}
+
+/* Hiệu ứng nhấp nháy phát sáng khi bấm từ Carousel */
+@keyframes card-target-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.7);
+    border-color: var(--google-blue);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 14px rgba(26, 115, 232, 0);
+    border-color: var(--google-blue);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--google-blue);
+  }
+}
+
+.relic-simple-card.card-targeted {
+  animation: card-target-pulse 1.6s ease-out;
+  border-color: var(--google-blue) !important;
+}
+
+.relic-simple-media {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  background: var(--bg-subtle);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.relic-simple-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.relic-simple-media.has-image .relic-simple-img {
+  display: block;
+}
+
+.relic-simple-media.has-image .photo-slide-skeleton {
+  display: none;
+}
+
+.relic-simple-card:hover .relic-simple-img {
+  transform: scale(1.08);
+}
+
+.relic-simple-num-badge {
+  display: none !important;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+  z-index: 2;
+  letter-spacing: 0.04em;
+}
+
+.relic-simple-video-pill {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(15, 23, 42, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 2;
+}
+
+.relic-simple-overlay-hint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0) 40%, rgba(15, 23, 42, 0.45) 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 12px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 1;
+}
+
+.relic-simple-card:hover .relic-simple-overlay-hint {
+  opacity: 1;
+}
+
+.relic-simple-overlay-hint span {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--google-blue);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transform: translateY(6px);
+  transition: transform 0.25s ease;
+}
+
+.relic-simple-card:hover .relic-simple-overlay-hint span {
+  transform: translateY(0);
+}
+
+.relic-simple-caption {
+  padding: 16px 14px 18px 14px;
+  background: #ffffff;
+  text-align: center;
+  border-top: 1px solid var(--border-subtle);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.relic-simple-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.35;
+  transition: color 0.2s ease;
+}
+
+.relic-simple-card:hover .relic-simple-title {
+  color: var(--google-blue);
+}
+
+/* Video phát khi rê chuột hoặc chạm giữ (Miếu Bà Bô Bô) */
+.relic-hover-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease-in-out;
+  z-index: 1;
+}
+
+.relic-simple-media.is-video-hovering .relic-hover-video {
+  opacity: 1;
+}
+
+.relic-simple-media.is-video-hovering .relic-simple-img {
+  opacity: 0.15;
+}
+
+.relic-hover-guide-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 3;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.relic-simple-media.is-video-hovering .relic-hover-guide-badge,
+.relic-simple-media.is-video-hovering .relic-simple-video-pill {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+}
+
+.relic-hover-guide-badge i {
+  font-size: 0.75rem;
+}
+
+/* Tương thích ngược: Thẻ di tích đầy đủ */
+.relic-full-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-smooth);
+  scroll-margin-top: 90px;
+}
+
+.relic-full-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--google-blue);
+}
+
+.relic-full-card.card-targeted {
+  animation: card-target-pulse 1.6s ease-out;
+  border-color: var(--google-blue) !important;
+}
+

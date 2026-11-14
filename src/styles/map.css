@@ -1,0 +1,337 @@
+/**
+ * map.css - Bản đồ tương tác Leaflet & Bảng soi thông tin (Inspector Panel)
+ */
+
+.map-showcase-section {
+  padding: 50px 0;
+  background: var(--bg-page);
+}
+
+.section-head-center {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 24px auto;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--google-blue);
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.section-heading {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  .section-heading {
+    font-size: 1.5rem;
+  }
+}
+
+.section-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Thanh bộ lọc chủ đề (Filter Chips Bar) */
+.map-filter-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 2px 16px 2px;
+  margin-bottom: 18px;
+  scrollbar-width: none;
+  justify-content: flex-start;
+}
+
+@media (min-width: 840px) {
+  .map-filter-bar {
+    justify-content: center;
+  }
+}
+
+.map-filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.chip-btn {
+  white-space: nowrap;
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+}
+
+.chip-btn:hover {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+.chip-btn.active {
+  background: var(--google-blue-surface);
+  color: var(--google-blue);
+  border-color: rgba(26, 115, 232, 0.4);
+  font-weight: 600;
+}
+
+/* Khung Dashboard Bản đồ tương tác */
+.map-dashboard-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 992px) {
+  .map-dashboard-card {
+    flex-direction: row;
+    height: 560px;
+  }
+}
+
+/* Vùng Bản đồ Leaflet */
+.map-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  background: #e5e3df;
+}
+
+@media (min-width: 992px) {
+  .map-canvas-wrapper {
+    flex: 1;
+    height: 100%;
+  }
+}
+
+#map-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Các nút công cụ nổi trên bản đồ */
+.map-corner-tools {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.map-tool-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 0;
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+
+.map-tool-icon-btn:hover {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  transform: scale(1.06);
+}
+
+.map-tool-icon-btn.active {
+  color: var(--google-blue);
+  background: var(--google-blue-surface);
+  border-color: rgba(26, 115, 232, 0.4);
+}
+
+/* Dropdown chọn lớp bản đồ */
+.map-layer-dropdown {
+  position: absolute;
+  top: 52px;
+  right: 14px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: 0;
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 600;
+  min-width: 160px;
+}
+
+.map-layer-dropdown.show {
+  display: flex;
+}
+
+.layer-drop-btn {
+  border: none;
+  background: transparent;
+  padding: 8px 12px;
+  border-radius: 0;
+  text-align: left;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.layer-drop-btn:hover {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+.layer-drop-btn.active {
+  background: var(--google-blue-surface);
+  color: var(--google-blue);
+  font-weight: 600;
+}
+
+/* Bảng soi thông tin di tích khi sờ chuột (Live Dynamic Hover Inspector) */
+.map-hover-inspector {
+  width: 100%;
+  background: var(--bg-white);
+  border-top: 1px solid var(--border-light);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 992px) {
+  .map-hover-inspector {
+    width: 380px;
+    border-top: none;
+    border-left: 1px solid var(--border-light);
+    overflow-y: auto;
+  }
+}
+
+.inspector-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inspector-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.inspector-rating {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--google-yellow-dark);
+}
+
+/* Khung ảnh có Skeleton Loader Shimmer */
+.inspector-media-box {
+  width: 100%;
+  height: 165px;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-subtle);
+  cursor: pointer;
+}
+
+.inspector-loaded-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.inspector-media-box:hover .inspector-loaded-img {
+  transform: scale(1.05);
+}
+
+.inspector-media-box.has-image .inspector-loaded-img {
+  display: block;
+}
+
+.inspector-media-box.has-image .photo-slide-skeleton {
+  display: none;
+}
+
+.inspector-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.inspector-address {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.inspector-desc {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.inspector-actions-row {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.inspector-actions-row .btn-inspector-primary {
+  flex: 1;
+}
+
+.inspector-actions-row .btn-inspector-outline {
+  padding: 9px 14px;
+}
+
+/* Nút điều khiển Leaflet & Popups hoàn toàn vuông góc */
+.leaflet-bar,
+.leaflet-bar a,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-popup-tip-container,
+.leaflet-tooltip {
+  border-radius: 0 !important;
+}
+
