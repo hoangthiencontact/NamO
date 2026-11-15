@@ -97,7 +97,7 @@ export const NAM_O_HERITAGE_SITES = [
     categoryKey: "champa",
     badge: "Di tích cấp Thành phố",
     era: "Văn hóa Chăm Pa cổ (Thế kỷ XIV - XV)",
-    coordinates: { lat: 16.115457220261352, lng: 108.13028249826372 },
+    coordinates: { lat: 16.115226406425457, lng: 108.1305741322122 },
     address: "Tổ 47 (sát cạnh Lăng Ngư Ông), P. Hòa Hiệp Nam, Q. Liên Chiểu, TP. Đà Nẵng",
     plusCode: "448J+54 Liên Chiểu, Đà Nẵng",
     googleMapsUrl: "https://maps.app.goo.gl/t6z2a45Y73E36rW47",
@@ -139,10 +139,10 @@ export const NAM_O_HERITAGE_SITES = [
     categoryKey: "shrine",
     badge: "Di tích cấp Thành phố",
     era: "Khoảng giữa thế kỷ XVII (Thời Chúa Nguyễn)",
-    coordinates: { lat: 16.11874981881682, lng: 108.1340476402434 },
+    coordinates: { lat: 16.117813905410834, lng: 108.13051477389537 },
     address: "Dưới chân núi cuống ghềnh Nam Ô, P. Hòa Hiệp Nam, Q. Liên Chiểu, TP. Đà Nẵng",
-    plusCode: "449M+GJ Liên Chiểu, Đà Nẵng",
-    googleMapsUrl: "https://maps.app.goo.gl/3qjFjXp5YmN4vN8S7",
+    plusCode: "449J+46 Liên Chiểu, Đà Nẵng",
+    googleMapsUrl: "https://maps.app.goo.gl/NvikdMqoj2uPmXPH8",
     image: "images/mieu-ba-lieu-hanh.jpg",
     gallery: [
       "images/mieu-ba-lieu-hanh.jpg",
@@ -181,9 +181,9 @@ export const NAM_O_HERITAGE_SITES = [
     categoryKey: "champa",
     badge: "Di tích Lịch sử cấp Thành phố",
     era: "Thế kỷ XV (Sắc phong vua Lê Thánh Tông)",
-    coordinates: { lat: 16.115714392437637, lng: 108.1274026362886 },
+    coordinates: { lat: 16.11737077883045, lng: 108.12926576991136 },
     address: "Ngõ cổ khối phố Nam Ô 2, P. Hòa Hiệp Nam, Q. Liên Chiểu, TP. Đà Nẵng",
-    plusCode: "448G+7X Liên Chiểu, Đà Nẵng",
+    plusCode: "448H+WP Liên Chiểu, Đà Nẵng",
     googleMapsUrl: "https://maps.app.goo.gl/9T2CjN67vK8a8q1t5",
     image: "images/mieu-ba-bo-bo.png",
     hoverVideo: "videos/mieu-ba-bo-bo.mp4",
@@ -231,10 +231,10 @@ export const NAM_O_HERITAGE_SITES = [
     categoryKey: "history",
     badge: "Di tích Lịch sử cấp Thành phố",
     era: "Khởi lập 1858 - 1860 (Trận chiến Đà Nẵng mở màn)",
-    coordinates: { lat: 16.11580979482939, lng: 108.12879553755452 },
+    coordinates: { lat: 16.115116402388782, lng: 108.12830718159184 },
     address: "Khu vực Cồn Trủng, khối phố Nam Ô 2, P. Hòa Hiệp Nam, Q. Liên Chiểu",
-    plusCode: "448H+8G Liên Chiểu, Đà Nẵng",
-    googleMapsUrl: "https://maps.app.goo.gl/rM97J1c2aE7wG2y49",
+    plusCode: "448H+28 Liên Chiểu, Đà Nẵng",
+    googleMapsUrl: "https://maps.app.goo.gl/Wf91J5P9F4rgxbiP9",
     image: "images/nghia-trung-nam-o.jpg",
     gallery: [
       "images/nghia-trung-nam-o.jpg",
@@ -309,7 +309,7 @@ export const NAM_O_HERITAGE_SITES = [
 ];
 
 export const MAP_CONFIG = {
-  center: [16.1150, 108.1296],
+  center: [16.1146, 108.1292],
   zoom: 16,
   minZoom: 14,
   maxZoom: 19
