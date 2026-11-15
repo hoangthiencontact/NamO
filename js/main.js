@@ -516,19 +516,57 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function switchModalTab(tabKey) {
-    document.querySelectorAll(".modal-tab-btn").forEach(b => b.classList.remove("active"));
-    document.querySelectorAll(".modal-tab-pane").forEach(p => p.classList.remove("active"));
+  // Quản lý vị trí cuộn độc lập cho từng tab trong modal
+  const tabScrollPositions = {};
 
+  function resetModalScrolls() {
+    for (const key in tabScrollPositions) {
+      delete tabScrollPositions[key];
+    }
+    document.querySelectorAll(".modal-tab-pane").forEach(pane => {
+      pane.scrollTop = 0;
+    });
+  }
+
+  function switchModalTab(tabKey) {
+    // 1. Lưu lại vị trí cuộn hiện tại của tab đang hiển thị
+    const activePane = document.querySelector(".modal-tab-pane.active");
+    if (activePane) {
+      const currentTabKey = activePane.id.replace("modal-pane-", "");
+      tabScrollPositions[currentTabKey] = activePane.scrollTop;
+    }
+
+    // 2. Chuyển trạng thái nút tab
+    document.querySelectorAll(".modal-tab-btn").forEach(b => b.classList.remove("active"));
     const targetBtn = document.getElementById(`tab-btn-${tabKey}`);
-    const targetPane = document.getElementById(`modal-pane-${tabKey}`);
     if (targetBtn) targetBtn.classList.add("active");
-    if (targetPane) targetPane.classList.add("active");
+
+    // 3. Tạm dừng phát video nếu chuyển khỏi tab video
+    if (tabKey !== "video") {
+      document.querySelectorAll("#modal-video-container video").forEach(v => v.pause());
+    }
+
+    // 4. Chuyển đổi nội dung tab hiển thị
+    document.querySelectorAll(".modal-tab-pane").forEach(p => p.classList.remove("active"));
+    const targetPane = document.getElementById(`modal-pane-${tabKey}`);
+    if (targetPane) {
+      targetPane.classList.add("active");
+
+      // 5. Khôi phục vị trí cuộn độc lập của tab đích
+      const savedPos = tabScrollPositions[tabKey] !== undefined ? tabScrollPositions[tabKey] : 0;
+      targetPane.scrollTop = savedPos;
+      requestAnimationFrame(() => {
+        targetPane.scrollTop = savedPos;
+      });
+    }
   }
 
   window.openDetailModal = function (siteId, initialTab = "info") {
     const site = NAM_O_HERITAGE_SITES.find(s => s.id === siteId);
     if (!site) return;
+
+    // Đặt lại trạng thái cuộn của tất cả các phần nội dung
+    resetModalScrolls();
 
     state.activeSiteId = site.id;
     const pinColor = getPinColor(site.number);
@@ -648,7 +686,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <!-- Trình phát Video HTML5 -->
           <div class="modal-video-wrapper">
-            <video id="modal-active-video-player" controls preload="metadata" playsinline poster="${site.image}">
+            <video id="modal-active-video-player" controls preload="metadata" playsinline poster="${site.guideVideo?.poster || site.image}">
               <source src="${guideVideoSrc}" type="video/mp4">
               Trình duyệt không hỗ trợ phát thẻ video.
             </video>
@@ -685,6 +723,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (videos.length === 1) {
         const vidData = videos[0];
         const vidSrc = state.customVideos[site.id] || vidData.src;
+        const vidPoster = vidData.poster || site.image;
 
         container.innerHTML = `
           <div class="modal-video-card">
@@ -697,7 +736,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
 
             <div class="modal-video-wrapper">
-              <video id="modal-active-video-player" controls preload="metadata" playsinline poster="${site.image}">
+              <video id="modal-active-video-player" controls preload="metadata" playsinline poster="${vidPoster}">
                 <source src="${vidSrc}" type="video/mp4">
                 Trình duyệt không hỗ trợ phát thẻ video.
               </video>
@@ -711,6 +750,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="modal-videos-list" style="display: flex; flex-direction: column; gap: 24px;">
           ${videos.map((vidData, idx) => {
         const vidSrc = (idx === 0 && state.customVideos[site.id]) ? state.customVideos[site.id] : vidData.src;
+        const vidPoster = vidData.poster || site.image;
         return `
               <div class="modal-video-card">
                 <div class="modal-video-header">
@@ -722,7 +762,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
 
                 <div class="modal-video-wrapper">
-                  <video class="modal-video-player-item" controls preload="metadata" playsinline poster="${site.image}">
+                  <video class="modal-video-player-item" controls preload="metadata" playsinline poster="${vidPoster}">
                     <source src="${vidSrc}" type="video/mp4">
                     Trình duyệt không hỗ trợ phát thẻ video.
                   </video>
@@ -784,6 +824,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Dừng phát tất cả video nếu đang chạy
     document.querySelectorAll("#modal-video-container video").forEach(v => v.pause());
     document.getElementById("relic-modal").classList.remove("open");
+    resetModalScrolls();
   };
 
   document.getElementById("relic-modal").addEventListener("click", (e) => {

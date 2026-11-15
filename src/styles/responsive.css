@@ -45,6 +45,10 @@
   }
 
   .modal-scroll-content {
+    padding: 0;
+  }
+
+  .modal-tab-pane {
     padding: 16px 18px 24px 18px;
   }
 

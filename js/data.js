@@ -25,6 +25,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Khám Phá Gian Thờ Chính Đình Làng Nam Ô",
         src: "videos/dinh-lang-nam-o.mp4",
+        poster: "images/posters/dinh-lang-nam-o.jpg",
         description: "Thước phim tư liệu ghi lại không gian nội điện trang nghiêm, tàn lọng vàng và án thờ rồng khảm xà cừ cổ kính của Đình Làng Nam Ô.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -32,6 +33,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Toàn Cảnh Khuôn Viên & Kiến Trúc Cổ Đình Làng Nam Ô",
         src: "videos/dinh-lang-nam-o-2.mp4",
+        poster: "images/posters/dinh-lang-nam-o-2.jpg",
         description: "Thước phim tư liệu 12 giây ghi lại toàn cảnh sân đình, mái ngói âm dương rêu phong và kiến trúc chạm khắc rồng phượng cổ kính của Đình Làng Nam Ô.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -39,6 +41,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Không Gian Tiền Đường & Cột Gỗ Chạm Khắc Tinh Xảo",
         src: "videos/dinh-lang-nam-o-3.mp4",
+        poster: "images/posters/dinh-lang-nam-o-3.jpg",
         description: "Thước phim tư liệu 13 giây ghi lại cận cảnh không gian tiền đường, hàng cột gỗ lim và các bức hoành phi, câu đối sơn son thếp vàng.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -46,6 +49,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Khám Phá Chi Tiết Nội Điện & Nơi Phụng Thờ Tiền Hiền",
         src: "videos/dinh-lang-nam-o-4.mp4",
+        poster: "images/posters/dinh-lang-nam-o-4.jpg",
         description: "Thước phim tư liệu toàn cảnh gần 30 giây bao quát trọn vẹn từ sân đình, tiền đường vào đến hậu tẩm nơi phụng thờ các bậc tiền hiền khai khẩn làng cổ Nam Ô.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -88,6 +92,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Án Thờ Nam Hải Tôn Thần & Gian Thờ Ngọc Cốt Ông Chuông, Ông Kim",
         src: "videos/lang-ngu-ong.mp4",
+        poster: "images/posters/lang-ngu-ong.jpg",
         description: "Thước phim tư liệu 15 giây ghi lại gian chính điện trang nghiêm phụng thờ Nam Hải Cự Tộc Ngọc Lân Tôn Thần cùng khám thờ Ngọc Cốt linh thiêng.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -95,6 +100,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Toàn Cảnh Cổng Tứ Trụ Biểu & Khuôn Viên Sân Lăng Ngư Ông",
         src: "videos/lang-ngu-ong-2.mp4",
+        poster: "images/posters/lang-ngu-ong-2.jpg",
         description: "Thước phim tư liệu 21 giây ghi lại cổng tứ trụ uy nghi, câu đối khảm sành sứ, bức bình phong Long Mã và khuôn viên mặt tiền hướng biển của Lăng Ngư Ông.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -102,6 +108,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Kiến Trúc Nội Điện & Hệ Thống Hoành Phi Triều Tự Đức",
         src: "videos/lang-ngu-ong-3.mp4",
+        poster: "images/posters/lang-ngu-ong-3.jpg",
         description: "Thước phim tư liệu 26 giây độ nét cao ghi lại trọn vẹn kết cấu rường gỗ cổ truyền, các bức hoành phi câu đối thếp vàng lưu giữ dấu ấn lịch sử triều Tự Đức.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -109,6 +116,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Cận Cảnh Kho Tàng Ngọc Cốt Cá Voi Linh Thiêng Trăm Năm",
         src: "videos/lang-ngu-ong-4.mp4",
+        poster: "images/posters/lang-ngu-ong-4.jpg",
         description: "Thước phim tư liệu 10 giây ghi lại cận cảnh các bộ xương và ngọc cốt cá voi khổng lồ được ngư dân làng chài Nam Ô cung kính bảo quản hàng trăm năm.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -150,6 +158,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Cận Cảnh Miệng Giếng Vuông Cổ Chăm Pa (Giếng Lăng)",
         src: "videos/gieng-lang.mp4",
+        poster: "images/posters/gieng-lang.jpg",
         description: "Thước phim tư liệu quay cận cảnh cấu trúc giếng vuông bằng đá và gạch độc đáo của nền văn minh Chăm Pa cổ hàng trăm năm tuổi.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -157,6 +166,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Toàn Cảnh Bờ Kè & Kiến Trúc Thành Giếng Vuông Cổ",
         src: "videos/gieng-lang-2.mp4",
+        poster: "images/posters/gieng-lang-2.jpg",
         description: "Thước phim tư liệu 10 giây ghi lại trọn vẹn bờ kè đá, nền lát gạch, 4 trụ đá góc và cấu trúc thành giếng vuông vững chãi được bảo tồn nguyên vẹn tại Giếng Lăng.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -164,6 +174,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Khuôn Viên Cổ Kính Giếng Lăng Bên Cạnh Lăng Ngư Ông",
         src: "videos/gieng-lang-3.mp4",
+        poster: "images/posters/gieng-lang-3.jpg",
         description: "Thước phim tư liệu 13 giây sắc nét bao quát không gian Giếng Lăng nép mình dưới bóng cây cổ thụ, bên bức tường vàng rêu phong của quần thể di tích Lăng Ông Nam Ô.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -206,6 +217,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Khuôn Viên Tiền Đường & Không Gian Nội Điện Miếu Bà Liễu Hạnh",
         src: "videos/mieu-ba-lieu-hanh.mp4",
+        poster: "images/posters/mieu-ba-lieu-hanh.jpg",
         description: "Thước phim tư liệu 11 giây ghi lại cổng tiền đường, cửa gỗ bức bàn và không gian nội điện trang nghiêm hướng ra ghềnh rạn biển Nam Ô.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -213,6 +225,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Án Thờ Chính Điện Phụng Thờ Vân Hương Thánh Mẫu Liễu Hạnh",
         src: "videos/mieu-ba-lieu-hanh-2.mp4",
+        poster: "images/posters/mieu-ba-lieu-hanh-2.jpg",
         description: "Thước phim tư liệu 17 giây cận cảnh khám thờ sơn son thếp vàng, bài vị tam vị Thánh Mẫu và khói hương tôn nghiêm trong gian chính điện.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -254,6 +267,7 @@ const NAM_O_HERITAGE_SITES = [
     guideVideo: {
       title: "Video Hướng Dẫn Đường Đi Vào Miếu Bà Bô Bô",
       src: "videos/mieu-ba-bo-bo.mp4",
+      poster: "images/posters/huong-dan-mieu-ba-bo-bo.jpg",
       description: "Video ghi lại lộ trình di chuyển chi tiết từ trục đường chính qua các ngõ nhỏ trong làng cổ Nam Ô vào tận cổng Miếu Bà Bô Bô.",
       badge: "Hướng Dẫn Đường Đi",
       isGuide: true
@@ -262,6 +276,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Video Trải Nghiệm & Lối Vào Miếu Bà Bô Bô Qua Ngõ Cổ Nam Ô",
         src: "videos/mieu-ba-bo-bo.mp4",
+        poster: "images/posters/mieu-ba-bo-bo.jpg",
         description: "Thước phim tư liệu 47 giây ghi lại hành trình từ con ngõ cổ Nam Ô dẫn vào khuôn viên và gian thờ Nữ thần Chăm Pa Bô Bô Phu nhân.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -269,6 +284,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Toàn Cảnh Kiến Trúc Cổ Kính & Mặt Tiền Ba Gian Miếu Bà Bô Bô",
         src: "videos/mieu-ba-bo-bo-2.mp4",
+        poster: "images/posters/mieu-ba-bo-bo-2.jpg",
         description: "Thước phim tư liệu 7 giây độ nét cao ghi lại cổng vào ba gian cửa gỗ lim, mái ngói âm dương phủ rêu phong cùng câu đối khảm sành sứ trước tiền đường.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -276,6 +292,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Án Thờ Chính Điện Phụng Thờ Thượng Đẳng Thần Bô Bô Phu Nhân",
         src: "videos/mieu-ba-bo-bo-3.mp4",
+        poster: "images/posters/mieu-ba-bo-bo-3.jpg",
         description: "Thước phim tư liệu 8 giây cận cảnh gian thờ chính trang nghiêm, án thờ chạm khắc rồng phượng và khám thờ Thần Nữ Bô Bô được phong sắc Thượng Đẳng Thần.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -283,6 +300,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Hành Trình Di Chuyển Xuyên Qua Các Ngõ Làng Chài Cổ Đến Miếu Bà",
         src: "videos/mieu-ba-bo-bo-4.mp4",
+        poster: "images/posters/mieu-ba-bo-bo-4.jpg",
         description: "Thước phim tư liệu 52 giây ghi lại trọn vẹn lộ trình di chuyển chân thực dọc theo các con ngõ quanh co đậm chất làng chài cổ xưa Nam Ô dẫn đến ngôi miếu thiêng.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -325,6 +343,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Bia Tưởng Niệm & Quần Thể Khuôn Viên Nghĩa Trủng Nam Ô",
         src: "videos/nghia-trung-nam-o.mp4",
+        poster: "images/posters/nghia-trung-nam-o.jpg",
         description: "Thước phim tư liệu 8 giây ghi lại toàn cảnh bia di tích lịch sử và khuôn viên quần thể Nghĩa Trủng Nam Ô trang nghiêm hướng biển.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -332,6 +351,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Chính Điện Đền Thờ & Án Tiền 'Nghĩa Liệt' Tưởng Niệm Anh Linh Nghĩa Sĩ",
         src: "videos/nghia-trung-nam-o-2.mp4",
+        poster: "images/posters/nghia-trung-nam-o-2.jpg",
         description: "Thước phim tư liệu 40 giây cận cảnh gian chính điện đền thờ, án tiền chạm khắc tinh xảo chữ 'Nghĩa Liệt' cùng hệ thống câu đối tưởng niệm nghĩa binh vị quốc vong thân năm 1858.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -339,6 +359,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Toàn Cảnh Quần Thể Hàng Trăm Phần Mộ Nghĩa Sĩ Trận Vong 1858",
         src: "videos/nghia-trung-nam-o-3.mp4",
+        poster: "images/posters/nghia-trung-nam-o-3.jpg",
         description: "Thước phim tư liệu 20 giây ghi lại trọn vẹn khu an táng hàng trăm ngôi mộ của các tướng sĩ, nghĩa binh triều Nguyễn và nhân dân anh dũng hy sinh trong trận đầu kháng chiến chống liên quân Pháp - Tây Ban Nha.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -380,6 +401,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Khuôn Viên Sân Dinh & Bình Phong Long Mã Dinh Âm Linh",
         src: "videos/dinh-am-linh.mp4",
+        poster: "images/posters/dinh-am-linh.jpg",
         description: "Thước phim tư liệu ghi lại bình phong Long Mã, rặng cây sứ đại nở hoa và không gian linh thiêng hướng biển của Dinh Âm Linh.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -387,6 +409,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Toàn Cảnh Cổng Trụ Biểu & Khuôn Viên Dinh Âm Linh",
         src: "videos/dinh-am-linh-2.mp4",
+        poster: "images/posters/dinh-am-linh-2.jpg",
         description: "Thước phim tư liệu 11 giây ghi lại cận cảnh cổng tứ trụ uy nghi, hàng rào sơn son và không gian cổ kính thanh tịnh của Dinh Âm Linh.",
         badge: "Phim Tư Liệu",
         isGuide: false
@@ -394,6 +417,7 @@ const NAM_O_HERITAGE_SITES = [
       {
         title: "Kiến Trúc Cổ & Không Gian Phụng Thờ Dinh Âm Linh",
         src: "videos/dinh-am-linh-3.mp4",
+        poster: "images/posters/dinh-am-linh-3.jpg",
         description: "Thước phim tư liệu 10 giây ghi lại không gian nội điện và cảnh quan hướng biển phụng thờ nghĩa sĩ vị quốc và thập loại chúng sinh.",
         badge: "Phim Tư Liệu",
         isGuide: false
