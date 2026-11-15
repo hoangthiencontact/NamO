@@ -71,15 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <img src="${imgSrc}" class="slide-real-image" id="slide-img-${site.id}" alt="${site.title}" onerror="handleSlideImgError('${site.id}')" onload="handleSlideImgSuccess('${site.id}')" />
 
-          <!-- Bảng tiêu đề tối giản phủ nổi lên ảnh -->
+          <!-- Bảng tiêu đề: Chỉ để đúng tên địa danh (Viết hoa toàn bộ) -->
           <div class="slide-overlay-caption">
             <div class="slide-overlay-title">
-              <span style="color:${pinColor};">●</span>
-              <span>${site.number}. ${site.title}</span>
-            </div>
-            <div class="slide-overlay-hint">
-              <span>Xem chi tiết & Media</span>
-              <i class="fa-solid fa-expand"></i>
+              <span>${site.title.toUpperCase()}</span>
             </div>
           </div>
 
@@ -139,12 +134,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  window.handleSlideImgError = function(siteId) {
+  window.handleSlideImgError = function (siteId) {
     const card = document.getElementById(`photo-slide-${siteId}`);
     if (card) card.classList.remove("has-image");
   };
 
-  window.handleSlideImgSuccess = function(siteId) {
+  window.handleSlideImgSuccess = function (siteId) {
     const card = document.getElementById(`photo-slide-${siteId}`);
     if (card) card.classList.add("has-image");
   };
@@ -152,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================================================================
   // HÀNH ĐỘNG: BẤM VÀO ẢNH CAROUSEL THÌ TRỎ TỚI THẺ CHI TIẾT
   // =========================================================================
-  window.scrollToRelicCard = function(siteId) {
+  window.scrollToRelicCard = function (siteId) {
     const targetCard = document.getElementById(`card-${siteId}`);
     if (!targetCard) return;
 
@@ -217,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ${hasVideo ? `
             <div class="relic-simple-video-pill">
               <i class="fa-solid fa-play"></i>
-              <span>${site.id === 'mieu-ba-bo-bo' ? 'Video chỉ đường' : 'Video'}</span>
+              <span>${site.id === 'mieu-ba-bo-bo' && (!site.videos || site.videos.length <= 1) ? 'Video chỉ đường' : 'Video'}</span>
             </div>
           ` : ''}
 
@@ -237,25 +232,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  window.handleCardImgError = function(siteId) {
+  window.handleCardImgError = function (siteId) {
     const box = document.getElementById(`card-media-${siteId}`);
     if (box) box.classList.remove("has-image");
   };
 
-  window.handleCardImgSuccess = function(siteId) {
+  window.handleCardImgSuccess = function (siteId) {
     const box = document.getElementById(`card-media-${siteId}`);
     if (box) box.classList.add("has-image");
   };
 
   // Cuộn lên bản đồ khi bấm "Xem trên bản đồ"
-  window.focusRelicOnMap = function(siteId) {
+  window.focusRelicOnMap = function (siteId) {
     const site = NAM_O_HERITAGE_SITES.find(s => s.id === siteId);
     if (!site) return;
 
     document.getElementById("ban-do").scrollIntoView({ behavior: "smooth" });
 
     setTimeout(() => {
-      state.map.flyTo([site.coordinates.lat, site.coordinates.lng], 17, { duration: 0.9 });
+      state.map.flyTo([site.coordinates.lat + 0.0006, site.coordinates.lng], 17, { duration: 0.9 });
       activatePin(site.id);
       updateInspector(site);
 
@@ -273,6 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
       zoom: MAP_CONFIG.zoom,
       minZoom: MAP_CONFIG.minZoom,
       maxZoom: MAP_CONFIG.maxZoom,
+      zoomSnap: 0.1,
       scrollWheelZoom: false
     });
 
@@ -321,7 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
         html: pinHtml,
         iconSize: [36, 44],
         iconAnchor: [18, 44],
-        popupAnchor: [0, -42]
+        popupAnchor: [0, -44]
       });
 
       const marker = L.marker([site.coordinates.lat, site.coordinates.lng], {
@@ -332,19 +328,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const popupContent = `
         <div class="google-popup-card">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-size:0.7rem; font-weight:700; color:${pinColor}; background:${pinColor}15; padding:2px 8px; border-radius:10px;">
+          <div class="google-popup-header">
+            <span class="google-popup-badge" style="color:${pinColor}; background:${pinColor}18;">
               DI TÍCH ${site.number}
             </span>
-            <span style="font-size:0.7rem; color:#f29900; font-weight:600;">★ 5.0</span>
+            <span class="google-popup-rating">★ 5.0</span>
           </div>
-          <div style="font-size:0.95rem; font-weight:700; color:#0f172a; margin-top:4px;">${site.title}</div>
-          <div style="font-size:0.76rem; color:#475569; line-height:1.45;">${site.shortDesc}</div>
-          <div style="display:flex; gap:6px; margin-top:8px;">
-            <button onclick="openDetailModal('${site.id}')" style="background:#1a73e8; color:#fff; border:none; padding:5px 12px; border-radius:14px; font-size:0.74rem; font-weight:600; cursor:pointer;">
+          <div class="google-popup-title">${site.title}</div>
+          <div class="google-popup-desc">${site.shortDesc}</div>
+          <div class="google-popup-actions">
+            <button onclick="openDetailModal('${site.id}')" class="google-popup-btn primary">
               Xem chi tiết
             </button>
-            <a href="${site.googleMapsUrl}" target="_blank" style="background:#fff; color:#1a73e8; border:1px solid #dadce0; padding:5px 12px; border-radius:14px; font-size:0.74rem; text-decoration:none; font-weight:600;">
+            <a href="${site.googleMapsUrl}" target="_blank" class="google-popup-btn secondary">
               Chỉ đường
             </a>
           </div>
@@ -352,9 +348,11 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
 
       const popup = L.popup({
-        offset: [0, -38],
+        offset: [0, -2],
         closeButton: false,
-        autoPan: false
+        autoPan: true,
+        autoPanPaddingTopLeft: [20, 20],
+        autoPanPaddingBottomRight: [20, 20]
       }).setContent(popupContent);
 
       marker.bindPopup(popup);
@@ -420,7 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let targetUploadSiteId = null;
   const fileInput = document.getElementById("relic-file-input");
 
-  window.triggerUpload = function(siteId) {
+  window.triggerUpload = function (siteId) {
     targetUploadSiteId = siteId || state.activeSiteId;
     fileInput.click();
   };
@@ -430,7 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!file || !targetUploadSiteId) return;
 
     const reader = new FileReader();
-    reader.onload = function(evt) {
+    reader.onload = function (evt) {
       const base64 = evt.target.result;
       state.userImages[targetUploadSiteId] = base64;
       try {
@@ -509,7 +507,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (activePlayer) {
             activePlayer.src = videoUrl;
             activePlayer.load();
-            activePlayer.play().catch(() => {});
+            activePlayer.play().catch(() => { });
           }
         }
 
@@ -528,7 +526,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (targetPane) targetPane.classList.add("active");
   }
 
-  window.openDetailModal = function(siteId, initialTab = "info") {
+  window.openDetailModal = function (siteId, initialTab = "info") {
     const site = NAM_O_HERITAGE_SITES.find(s => s.id === siteId);
     if (!site) return;
 
@@ -625,8 +623,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const tabVideoTitle = document.getElementById("tab-video-title");
     const tabVideoBadge = document.getElementById("tab-video-badge");
 
-    // TRƯỜNG HỢP 1: MIẾU BÀ BÔ BÔ (VIDEO HƯỚNG DẪN ĐƯỜNG ĐI VÀO)
-    if (site.id === "mieu-ba-bo-bo") {
+    // TRƯỜNG HỢP 1: MIẾU BÀ BÔ BÔ (VIDEO HƯỚNG DẪN ĐƯỜNG ĐI VÀO NẾU CHƯA CÓ VIDEO TƯ LIỆU)
+    if (site.id === "mieu-ba-bo-bo" && (!site.videos || site.videos.length === 0)) {
       if (tabVideoTitle) tabVideoTitle.innerText = "Video Hướng Dẫn Đường Đi";
       if (tabVideoBadge) {
         tabVideoBadge.style.display = "inline-block";
@@ -674,7 +672,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // TRƯỜNG HỢP 2: CÁC DI TÍCH CÓ VIDEO KHÁC (NHƯ NGHĨA TRỦNG NAM Ô)
+    // TRƯỜNG HỢP 2: CÁC DI TÍCH CÓ VIDEO KHÁC (NHƯ NGHĨA TRỦNG NAM Ô, DINH ÂM LINH)
     const videos = site.videos || [];
     if (videos.length > 0) {
       if (tabVideoTitle) tabVideoTitle.innerText = "Video Tư Liệu";
@@ -684,35 +682,65 @@ document.addEventListener("DOMContentLoaded", () => {
         tabVideoBadge.style.background = "#1a73e8";
       }
 
-      const vidData = videos[0];
-      const vidSrc = state.customVideos[site.id] || vidData.src;
+      if (videos.length === 1) {
+        const vidData = videos[0];
+        const vidSrc = state.customVideos[site.id] || vidData.src;
 
-      container.innerHTML = `
-        <div class="modal-video-card">
-          <div class="modal-video-header">
-            <span class="modal-video-badge">
-              <i class="fa-solid fa-film"></i> ${vidData.badge || "Thước Phim Tư Liệu"}
-            </span>
-            <h3 class="modal-video-title">${vidData.title}</h3>
-            ${vidData.description ? `<p class="modal-video-desc">${vidData.description}</p>` : ''}
-          </div>
+        container.innerHTML = `
+          <div class="modal-video-card">
+            <div class="modal-video-header">
+              <span class="modal-video-badge">
+                <i class="fa-solid fa-film"></i> ${vidData.badge || "Thước Phim Tư Liệu"}
+              </span>
+              <h3 class="modal-video-title">${vidData.title}</h3>
+              ${vidData.description ? `<p class="modal-video-desc">${vidData.description}</p>` : ''}
+            </div>
 
-          <div class="modal-video-wrapper">
-            <video id="modal-active-video-player" controls preload="metadata" playsinline poster="${site.image}">
-              <source src="${vidSrc}" type="video/mp4">
-              Trình duyệt không hỗ trợ phát thẻ video.
-            </video>
-          </div>
-
-          <div class="modal-video-helper-box">
-            <div class="helper-video-actions">
-              <button class="btn-video-pick" onclick="triggerPickLocalVideo('${site.id}')">
-                <i class="fa-solid fa-file-video"></i> Đổi / Chọn video khác từ máy
-              </button>
+            <div class="modal-video-wrapper">
+              <video id="modal-active-video-player" controls preload="metadata" playsinline poster="${site.image}">
+                <source src="${vidSrc}" type="video/mp4">
+                Trình duyệt không hỗ trợ phát thẻ video.
+              </video>
             </div>
           </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="modal-videos-list" style="display: flex; flex-direction: column; gap: 24px;">
+          ${videos.map((vidData, idx) => {
+        const vidSrc = (idx === 0 && state.customVideos[site.id]) ? state.customVideos[site.id] : vidData.src;
+        return `
+              <div class="modal-video-card">
+                <div class="modal-video-header">
+                  <span class="modal-video-badge">
+                    <i class="fa-solid fa-film"></i> ${vidData.badge || "Thước Phim Tư Liệu"} • Video ${idx + 1}/${videos.length}
+                  </span>
+                  <h3 class="modal-video-title">${vidData.title}</h3>
+                  ${vidData.description ? `<p class="modal-video-desc">${vidData.description}</p>` : ''}
+                </div>
+
+                <div class="modal-video-wrapper">
+                  <video class="modal-video-player-item" controls preload="metadata" playsinline poster="${site.image}">
+                    <source src="${vidSrc}" type="video/mp4">
+                    Trình duyệt không hỗ trợ phát thẻ video.
+                  </video>
+                </div>
+              </div>
+            `;
+      }).join('')}
         </div>
       `;
+
+      container.querySelectorAll("video").forEach(v => {
+        v.addEventListener("play", () => {
+          container.querySelectorAll("video").forEach(other => {
+            if (other !== v) other.pause();
+          });
+        });
+      });
+
       return;
     }
 
@@ -740,24 +768,21 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
-  window.triggerPickLocalVideo = function(siteId) {
+  window.triggerPickLocalVideo = function (siteId) {
     state.targetVideoSiteId = siteId || state.activeSiteId;
     const input = document.getElementById("relic-video-input");
     if (input) input.click();
   };
 
-  window.focusRelicFromModal = function() {
+  window.focusRelicFromModal = function () {
     const siteId = state.activeSiteId;
     closeDetailModal();
     focusRelicOnMap(siteId);
   };
 
-  window.closeDetailModal = function() {
-    // Dừng phát video nếu đang chạy
-    const player = document.getElementById("modal-active-video-player");
-    if (player) {
-      player.pause();
-    }
+  window.closeDetailModal = function () {
+    // Dừng phát tất cả video nếu đang chạy
+    document.querySelectorAll("#modal-video-container video").forEach(v => v.pause());
     document.getElementById("relic-modal").classList.remove("open");
   };
 
@@ -853,7 +878,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function stepAutoTour() {
     if (state.tourIndex >= NAM_O_HERITAGE_SITES.length) state.tourIndex = 0;
     const site = NAM_O_HERITAGE_SITES[state.tourIndex];
-    state.map.flyTo([site.coordinates.lat, site.coordinates.lng], 17, { duration: 1 });
+    state.map.flyTo([site.coordinates.lat + 0.0006, site.coordinates.lng], 17, { duration: 1 });
     activatePin(site.id);
     updateInspector(site);
 

@@ -28,3 +28,7 @@ node_modules/
 dist/
 .vite/
 
+# Thư mục chứa video gốc nặng / raw footage
+7Ditich/
+*.mov
+

@@ -33,6 +33,10 @@ export function switchModalTab(tabKey) {
   document.querySelectorAll(".modal-tab-btn").forEach(b => b.classList.remove("active"));
   document.querySelectorAll(".modal-tab-pane").forEach(p => p.classList.remove("active"));
 
+  if (tabKey !== "video") {
+    document.querySelectorAll("#modal-video-container video").forEach(v => v.pause());
+  }
+
   const targetBtn = document.getElementById(`tab-btn-${tabKey}`);
   const targetPane = document.getElementById(`modal-pane-${tabKey}`);
   if (targetBtn) targetBtn.classList.add("active");
@@ -153,11 +157,11 @@ export function renderModalVideo(site) {
   const tabVideoTitle = document.getElementById("tab-video-title");
   const tabVideoBadge = document.getElementById("tab-video-badge");
 
-  // TRƯỜNG HỢP 1: MIẾU BÀ BÔ BÔ (VIDEO HƯỚNG DẪN ĐƯỜNG ĐI VÀO)
-  if (site.id === "mieu-ba-bo-bo") {
-    if (tabVideoTitle) tabVideoTitle.innerText = "Video Hướng Dẫn Đường Đi";
+  // TRƯỜNG HỢP 1: MIẾU BÀ BÔ BÔ (VIDEO HƯỚNG DẪN ĐƯỜNG ĐI VÀO NẾU CHƯA CÓ VIDEO TƯ LIỆU)
+  if (site.id === "mieu-ba-bo-bo" && (!site.videos || site.videos.length === 0)) {
+    if (tabVideoTitle) tabVideoTitle.innerText = "Video Hướng Dẫn";
     if (tabVideoBadge) {
-      tabVideoBadge.style.display = "inline-block";
+      tabVideoBadge.style.display = "inline-flex";
       tabVideoBadge.innerText = "Chỉ đường";
       tabVideoBadge.style.background = "#fa7b17";
     }
@@ -192,32 +196,72 @@ export function renderModalVideo(site) {
   if (videos.length > 0) {
     if (tabVideoTitle) tabVideoTitle.innerText = "Video Tư Liệu";
     if (tabVideoBadge) {
-      tabVideoBadge.style.display = "inline-block";
+      tabVideoBadge.style.display = "inline-flex";
       tabVideoBadge.innerText = videos.length;
       tabVideoBadge.style.background = "#1a73e8";
     }
 
-    const vidData = videos[0];
-    const vidSrc = state.customVideos[site.id] || vidData.src;
+    if (videos.length === 1) {
+      const vidData = videos[0];
+      const vidSrc = state.customVideos[site.id] || vidData.src;
 
+      container.innerHTML = `
+        <div class="modal-video-card">
+          <div class="modal-video-header">
+            <span class="modal-video-badge">
+              <i class="fa-solid fa-film"></i> ${vidData.badge || "Thước Phim Tư Liệu"}
+            </span>
+            <h3 class="modal-video-title">${vidData.title}</h3>
+            ${vidData.description ? `<p class="modal-video-desc">${vidData.description}</p>` : ''}
+          </div>
+
+          <div class="modal-video-wrapper">
+            <video id="modal-active-video-player" controls preload="metadata" playsinline poster="${site.image}">
+              <source src="${vidSrc}" type="video/mp4">
+              Trình duyệt không hỗ trợ phát thẻ video.
+            </video>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    // Danh sách nhiều video tư liệu
     container.innerHTML = `
-      <div class="modal-video-card">
-        <div class="modal-video-header">
-          <span class="modal-video-badge">
-            <i class="fa-solid fa-film"></i> ${vidData.badge || "Thước Phim Tư Liệu"}
-          </span>
-          <h3 class="modal-video-title">${vidData.title}</h3>
-          ${vidData.description ? `<p class="modal-video-desc">${vidData.description}</p>` : ''}
-        </div>
+      <div class="modal-videos-list" style="display: flex; flex-direction: column; gap: 24px;">
+        ${videos.map((vidData, idx) => {
+          const vidSrc = (idx === 0 && state.customVideos[site.id]) ? state.customVideos[site.id] : vidData.src;
+          return `
+            <div class="modal-video-card">
+              <div class="modal-video-header">
+                <span class="modal-video-badge">
+                  <i class="fa-solid fa-film"></i> ${vidData.badge || "Thước Phim Tư Liệu"} • Video ${idx + 1}/${videos.length}
+                </span>
+                <h3 class="modal-video-title">${vidData.title}</h3>
+                ${vidData.description ? `<p class="modal-video-desc">${vidData.description}</p>` : ''}
+              </div>
 
-        <div class="modal-video-wrapper">
-          <video id="modal-active-video-player" controls preload="metadata" playsinline poster="${site.image}">
-            <source src="${vidSrc}" type="video/mp4">
-            Trình duyệt không hỗ trợ phát thẻ video.
-          </video>
-        </div>
+              <div class="modal-video-wrapper">
+                <video class="modal-video-player-item" controls preload="metadata" playsinline poster="${site.image}">
+                  <source src="${vidSrc}" type="video/mp4">
+                  Trình duyệt không hỗ trợ phát thẻ video.
+                </video>
+              </div>
+            </div>
+          `;
+        }).join('')}
       </div>
     `;
+
+    // Tự động tạm dừng các video khác khi 1 video bắt đầu phát
+    container.querySelectorAll("video").forEach(v => {
+      v.addEventListener("play", () => {
+        container.querySelectorAll("video").forEach(other => {
+          if (other !== v) other.pause();
+        });
+      });
+    });
+
     return;
   }
 
@@ -241,10 +285,7 @@ export function renderModalVideo(site) {
 }
 
 export function closeDetailModal() {
-  const player = document.getElementById("modal-active-video-player");
-  if (player) {
-    player.pause();
-  }
+  document.querySelectorAll("#modal-video-container video").forEach(v => v.pause());
   const modal = document.getElementById("relic-modal");
   if (modal) modal.classList.remove("open");
 }

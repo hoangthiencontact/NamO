@@ -118,26 +118,46 @@
 .modal-tabs-bar {
   display: flex;
   background: var(--bg-subtle);
-  padding: 6px 16px;
+  padding: 6px 12px;
   border-bottom: 1px solid var(--border-light);
-  gap: 8px;
+  gap: 6px;
   overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex-shrink: 0;
+}
+
+.modal-tabs-bar::-webkit-scrollbar {
+  display: none;
 }
 
 .modal-tab-btn {
+  flex: 1 1 0;
+  justify-content: center;
   background: transparent;
   border: none;
   border-radius: var(--radius-pill);
-  padding: 8px 16px;
-  font-size: 0.84rem;
+  padding: 8px 10px;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-secondary);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   transition: all 0.2s ease;
   white-space: nowrap;
+  outline: none;
+}
+
+.modal-tab-btn:focus {
+  outline: none;
+}
+
+.modal-tab-btn:focus-visible {
+  outline: 2px solid var(--google-blue);
+  outline-offset: -2px;
 }
 
 .modal-tab-btn:hover {
@@ -152,13 +172,40 @@
 }
 
 .modal-tab-badge {
-  background: var(--google-red);
+  background: var(--google-blue);
   color: #ffffff;
   font-size: 0.68rem;
   font-weight: 700;
-  padding: 1px 7px;
-  border-radius: 0;
+  padding: 1px 6px;
+  border-radius: 10px;
   margin-left: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  line-height: 1;
+}
+
+@media (max-width: 540px) {
+  .modal-tabs-bar {
+    padding: 5px 8px;
+    gap: 4px;
+  }
+  .modal-tab-btn {
+    padding: 7px 6px;
+    font-size: 0.76rem;
+    gap: 4px;
+  }
+  .modal-tab-btn i {
+    font-size: 0.8rem;
+  }
+  .modal-tab-badge {
+    padding: 1px 4px;
+    min-width: 16px;
+    height: 16px;
+    font-size: 0.62rem;
+  }
 }
 
 .modal-scroll-content {
